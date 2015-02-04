@@ -10,6 +10,10 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
+	public static PlayerPaddle player;
+	public static AIPaddle ai;
+	InputHandler IH;
+	
 	JFrame frame; // Window of the game
 	public final int WIDTH = 400; // Width of window
 	public final int HEIGHT = WIDTH / 16 * 9; // Height of window
@@ -24,6 +28,13 @@ public class Game extends Canvas implements Runnable {
 		while (gameRunning) { // If gameRunning = true
 			tick();
 			render();
+			
+			try {
+				Thread.sleep(7);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -51,10 +62,16 @@ public class Game extends Canvas implements Runnable {
 		frame.setResizable(false);
 		frame.setTitle(TITLE);
 		frame.setLocationRelativeTo(null);
+		
+		IH = new InputHandler(this);
+		
+		player = new PlayerPaddle(10, 60);
+		ai = new AIPaddle(getWidth() - 20, 60);
 	}
 	
 	public void tick() {
-		
+		player.tick(this);
+		ai.tick(this);
 	}
 	
 	public void render() {
@@ -67,6 +84,10 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		
+		player.render(g);
+		ai.render(g);
+		
 		g.dispose();
 		bs.show();
 	}
