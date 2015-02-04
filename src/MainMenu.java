@@ -15,7 +15,7 @@ public class MainMenu extends JFrame {
 	int buttonHeight = 40;
 
 	JButton Play, Quit;
-	JCheckBox twoPlayers, limitFrameRate;
+	JCheckBox twoPlayers;
 
 	public MainMenu() {
 
@@ -31,12 +31,10 @@ public class MainMenu extends JFrame {
 		Quit.setBounds((screenWidth - buttonWidth) / 2, 50, buttonWidth,
 				buttonHeight);
 		twoPlayers.setBounds((screenWidth - buttonWidth) / 2, 95, buttonWidth, buttonHeight);
-		limitFrameRate.setBounds(0, 140, buttonWidth * 3, buttonHeight);
 
 		getContentPane().add(Play);
 		getContentPane().add(Quit);
 		getContentPane().add(twoPlayers);
-		getContentPane().add(limitFrameRate);
 
 		pack();
 		setVisible(true);
@@ -52,7 +50,6 @@ public class MainMenu extends JFrame {
 		Play = new JButton("Play");
 		Quit = new JButton("Quit");
 		twoPlayers = new JCheckBox("2 Players");
-		limitFrameRate = new JCheckBox("Limit Frames/Second to Updates/Second");
 	}
 
 	private void addActions() {
