@@ -42,7 +42,9 @@ public class Game extends Canvas implements Runnable {
 
 	    try {
 		Thread.sleep(7);
-	    } catch (Exception e) {
+	    } 
+	    
+	    catch (Exception e) {
 		e.printStackTrace();
 	    }
 	}
@@ -109,8 +111,5 @@ public class Game extends Canvas implements Runnable {
 	bs.show();
     }
 
-    public static void main(String[] args) {
-	Game game = new Game();
-	game.start();
-    }
+
 }
